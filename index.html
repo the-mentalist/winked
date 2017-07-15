@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <title>Winked ;)</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="options-box">
+        <div class="form-group">
+          <label for="select-location">Select Location</label>
+          <select class="form-control" data-bind="options: availableLocations, optionsText: 'located', value: selectedLocation, optionsCaption: 'Select'" id="select-location"></select>
+        </div>
+        <hr>
+        <div data-bind="visible: selectedLocation">
+          <label>Available Sites</label>
+          <ul data-bind="foreach: selectedLocation() ? selectedLocation().locs : ''">
+            <li data-bind="text: $data"></li>
+          </ul>
+          
+        </div>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <!-- callback to handle maps api -->
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <!-- GoogleAPI -->
+    <!-- <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnrcKHtDPGwXx8N4N9Oz2ciCUCxVP1xWs&v=3&callback=initMap">
+    </script> -->
+    <!-- knockout framework -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
+    <!-- static data consisting of locations -->
+    <!-- <script src="assets/js/locations_data.js"></script> -->
+    <!-- ViewModel -->
+    <script type="text/javascript" src="assets/js/view.js"></script>
+
+  </body>
+</html>
