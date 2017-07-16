@@ -15,7 +15,7 @@ var LocationModel = function(rests, located){
 };
 
 // location specific collection
-var locations = [
+var locations_ko = [
 	new LocationModel(restaurants.slice(0,5), 'Sector 29'),
  	new LocationModel(restaurants.slice(5,9), 'Galleria Market'),
   new LocationModel(restaurants.slice(9,11), 'Sector 39'),
@@ -25,8 +25,11 @@ var locations = [
 var viewModel = function(){
 	var self = this;
 
-	this.availableLocations = ko.observableArray(locations);
-	this.selectedLocation = ko.observable()
+	this.availableLocations = ko.observableArray(locations_ko);
+	this.selectedLocation = ko.observable();
+	/*this.zoomToArea = function(){
+		debugger;
+	};*/
 	this.infoAvailable = ko.observable({
 		"cuisines": "",
 		"url": "",
