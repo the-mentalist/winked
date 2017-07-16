@@ -16,28 +16,41 @@
           <label for="select-location">Select Location</label>
           <select class="form-control" data-bind="options: availableLocations, optionsText: 'located', value: selectedLocation, optionsCaption: 'Select'" id="select-location"></select>
         </div>
-        <hr>
+        
         <div data-bind="visible: selectedLocation">
+          <hr>
           <label>Available Sites</label>
-          <ul data-bind="foreach: selectedLocation() ? selectedLocation().locs : ''">
-            <li data-bind="text: $data"></li>
+          <ul data-bind="foreach: selectedLocation() ? selectedLocation().rests : ''">
+            <li><a data-bind="text: $data.title, click: $parent.selectedRestaurant"></a></li>
           </ul>
-          
+        </div>
+        
+        <div data-bind="visible: infoAvailable().url==''?false:true">
+          <hr>
+          <label data-bind="text: infoAvailable().name"></label>
+          <p>Cuisines : <span class="info-data" data-bind="text: infoAvailable() ? infoAvailable().cuisines : ''"></span><p>
+          <p>Average cost for Two : <span class="info-data" data-bind="text: infoAvailable().average_cost_for_two"></span><p>
+          <div>
+            <a class="btn btn-warning" href="" data-bind="attr: {href: infoAvailable().url}" target="_blank">Checkout!</a>
+            <a class="btn btn-warning right" href="" data-bind="attr: {href: infoAvailable().menu_url}" target="_blank">See Menu</a>
+          </div>
         </div>
       </div>
       <div id="map"></div>
     </div>
 
-    <!-- callback to handle maps api -->
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- callback to handle maps api and helper functions-->
     <script type="text/javascript" src="assets/js/main.js"></script>
     <!-- GoogleAPI -->
-    <!-- <script async defer
+    <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnrcKHtDPGwXx8N4N9Oz2ciCUCxVP1xWs&v=3&callback=initMap">
-    </script> -->
+    </script>
     <!-- knockout framework -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
     <!-- static data consisting of locations -->
-    <!-- <script src="assets/js/locations_data.js"></script> -->
+    <script src="assets/js/locations_data.js"></script>
     <!-- ViewModel -->
     <script type="text/javascript" src="assets/js/view.js"></script>
 

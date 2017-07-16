@@ -1,13 +1,16 @@
 var locations = [
-  {title: 'Down Town Kitchen & Bar', location: {lat: 28.460878, lng: 77.08053}, located_in: 'Sector 29'},
-  {title: 'Subway', location: {lat: 28.467249, lng: 77.081231}, located_in: 'Galleria Market'},
-  {title: 'Dunkin\' Donuts', location: {lat: 28.443554, lng: 77.05596}, located_in: 'Sector 39'}
+  {title: 'Downtown - Diners & Living Beer Cafe', location: {lat: 28.460878, lng: 77.08053}, rid: '4959'},
+  {title: 'Pind Balluchi', location: {lat: 28.460878, lng: 77.08053}, rid: '836'},
+  {title: 'Starbucks', location: {lat: 28.460878, lng: 77.08053}, rid: '305272'},
+  {title: 'Molecule Air Bar', location: {lat: 28.460878, lng: 77.08053}, rid: '18157413'},
+  {title: 'Bikanervala', location: {lat: 28.460878, lng: 77.08053}, rid: '496'},
+  {title: 'Cafe Wanderlust', location: {lat: 28.460878, lng: 77.08053}, rid: '304430'},
+  {title: 'Crusty', location: {lat: 28.460878, lng: 77.08053}, rid: '305782'},
+  {title: 'Sugar and Spice', location: {lat: 28.460878, lng: 77.08053}, rid: '18241867'},
+  {title: 'Khan Chacha', location: {lat: 28.460878, lng: 77.08053}, rid: '300555'},
+  {title: 'Dunkin\' Donuts', location: {lat: 28.460878, lng: 77.08053}, rid: '9273'},
+  {title: 'Tea Halt', location: {lat: 28.460878, lng: 77.08053}, rid: '312592'},
+  {title: 'Hard Rock Cafe', location: {lat: 28.460878, lng: 77.08053}, rid: '305905'},
+  {title: 'Nando\'s', location: {lat: 28.460878, lng: 77.08053}, rid: '305815'},
+  {title: 'Imperfecto', location: {lat: 28.460878, lng: 77.08053}, rid: '306150'},
 ];
-
-function returnLocations(){
-	var locs = []
-	for (var location in locations){
-		locs.push(locations[location].located_in)
-	}
-	return locs
-};
