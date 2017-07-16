@@ -21,7 +21,7 @@
           <hr>
           <label>Available Sites</label>
           <ul data-bind="foreach: selectedLocation() ? selectedLocation().rests : ''">
-            <li><a data-bind="text: $data.title, click: $parent.selectedRestaurant"></a></li>
+            <li><a data-bind="text: $data.title, click: $parent.selectedRestaurant, event: {mouseover: $parent.animateMarker, mouseout: $parent.stopAnimateMarker}"></a></li>
           </ul>
         </div>
         

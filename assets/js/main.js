@@ -18,10 +18,11 @@ function initMap() {
     for (var i = 0; i < locations.length; i++) {
     	var position = locations[i].location;
     	var title = locations[i].title;
+    	var rid = locations[i].rid;
     	// Create a marker per location, and put into markers array.
     	var marker = new google.maps.Marker({
     		position : position,
-    		id : i,
+    		id : rid,
     		title : title,
     		map : map,
     		icon: defaultIcon
@@ -66,6 +67,47 @@ function makeMarkerIcon(markerColor) {
   return markerImage;
 }
 
+function setMarkersWithingBounds(bounds){
+	// set markers visible which are withing bounds
+	markers.forEach(function(marker){
+		if(bounds.contains(marker.position)){
+			marker.setMap(map);
+		}else{
+			marker.setMap(null);
+		}
+	});
+}
+
 function zoomToArea(location){
+	// zoom to specific location
 	map.setCenter(location);
+	map.setZoom(16);
+	var bounds = map.getBounds();
+	setMarkersWithingBounds(bounds);
+}
+
+function zoomToDefault(){
+	// zoom to default location
+	map.setCenter({lat: 28.459269, lng: 77.072419});
+	map.setZoom(13);
+	var bounds = map.getBounds();
+	setMarkersWithingBounds(bounds);
+}
+
+function animateMarker(rid){
+	//marker.setAnimation(google.maps.Animation.BOUNCE);
+	markers.forEach(function(marker){
+		if(marker.id == rid){
+			marker.setAnimation(google.maps.Animation.BOUNCE);
+		}
+	});
+}
+
+function stopAnimateMarker(rid){
+	//marker.setAnimation(google.maps.Animation.BOUNCE);
+	markers.forEach(function(marker){
+		if(marker.id == rid){
+			marker.setAnimation(null);
+		}
+	});
 }

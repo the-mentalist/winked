@@ -9,17 +9,18 @@ locations.forEach(function(loc){
 	restaurants.push(new RModel(loc.title, loc.rid));
 });
 
-var LocationModel = function(rests, located){
+var LocationModel = function(rests, located, locations){
 	this.rests = ko.observableArray(rests);
 	this.located = located;
+	this.locations = locations;
 };
 
 // location specific collection
 var locations_ko = [
-	new LocationModel(restaurants.slice(0,5), 'Sector 29'),
- 	new LocationModel(restaurants.slice(5,9), 'Galleria Market'),
-  new LocationModel(restaurants.slice(9,11), 'Sector 39'),
-  new LocationModel(restaurants.slice(11,14), 'DLF Cyber Hub')
+	new LocationModel(restaurants.slice(0,5), 'Sector 29', {lat: 28.466945, lng: 77.06652}),
+ 	new LocationModel(restaurants.slice(5,9), 'Galleria Market', {lat: 28.467252, lng: 77.08202}),
+  new LocationModel(restaurants.slice(9,11), 'Unitech CyberPark', {lat: 28.442781, lng: 77.057076}),
+  new LocationModel(restaurants.slice(11,14), 'DLF Cyber Hub', {lat: 28.495391, lng: 77.088467})
 ];
 
 var viewModel = function(){
@@ -27,6 +28,13 @@ var viewModel = function(){
 
 	this.availableLocations = ko.observableArray(locations_ko);
 	this.selectedLocation = ko.observable();
+	this.selectedLocation.subscribe(function(newval){
+		if(newval){
+			zoomToArea(newval.locations);
+		}else{
+			zoomToDefault();
+		}
+	});
 	/*this.zoomToArea = function(){
 		debugger;
 	};*/
@@ -55,6 +63,12 @@ var viewModel = function(){
 				//self.infoAvailable("Error in Request");
 			}
 		});
+	};
+	this.animateMarker = function(){
+		animateMarker(this.rid);
+	};
+	this.stopAnimateMarker = function(){
+		stopAnimateMarker(this.rid);
 	};
 
 };

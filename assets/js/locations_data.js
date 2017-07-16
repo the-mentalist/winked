@@ -14,10 +14,3 @@ var locations = [
   {title: 'Nando\'s', location: {lat: 28.4953916000, lng: 77.0886870000}, rid: '305815'},
   {title: 'Imperfecto', location: {lat: 28.4962105000, lng: 77.0889118000}, rid: '306150'},
 ];
-
-var main_locations = [
-	{title: 'Sector 29', location: {lat: 28.466945, lng: 77.06652}},
-	{title: 'Galleria Market', location: {lat: 28.467252, lng: 77.08202}},
-	{title: 'Sector 39', location: {lat: 28.447755, lng: 77.053171}},
-	{title: 'DLF Cyber Hub', location: {lat: 28.495391, lng: 77.088467}},
-];
