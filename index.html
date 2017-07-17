@@ -16,16 +16,24 @@
           <label for="select-location">Select Location</label>
           <select class="form-control" data-bind="options: availableLocations, optionsText: 'located', value: selectedLocation, optionsCaption: 'Select'" id="select-location"></select>
         </div>
-        
+        <!-- showing all items -->
+        <div data-bind="visible: allLocations">
+          <hr>
+          <label>Available Sites</label>
+          <ul data-bind="foreach: allLocations() ? allLocations() : ''">
+            <li><a data-bind="text: $data.title, click: $parent.selectedRestaurant"></a></li>
+          </ul>
+        </div>
+        <!-- Selected Location -->
         <div data-bind="visible: selectedLocation">
           <hr>
           <label>Available Sites</label>
           <ul data-bind="foreach: selectedLocation() ? selectedLocation().rests : ''">
-            <li><a data-bind="text: $data.title, click: $parent.selectedRestaurant, event: {mouseover: $parent.animateMarker, mouseout: $parent.stopAnimateMarker}"></a></li>
+            <li><a data-bind="text: $data.title, click: $parent.selectedRestaurant"></a></li>
           </ul>
         </div>
         
-        <div data-bind="visible: infoAvailable().url==''?false:true">
+        <div data-bind="visible: infoAvailable().cuisines">
           <hr>
           <label data-bind="text: infoAvailable().name"></label>
           <p>Cuisines : <span class="info-data" data-bind="text: infoAvailable() ? infoAvailable().cuisines : ''"></span><p>
@@ -35,6 +43,7 @@
             <a class="btn btn-warning right" href="" data-bind="attr: {href: infoAvailable().menu_url}" target="_blank">See Menu</a>
           </div>
         </div>
+        <div data-bind="visible: infoAvailable().error"><p data-bind="text: infoAvailable().error"></p></div>
       </div>
       <div id="map"></div>
     </div>
@@ -47,7 +56,8 @@
     <script type="text/javascript" src="assets/js/main.js"></script>
     <!-- GoogleAPI -->
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnrcKHtDPGwXx8N4N9Oz2ciCUCxVP1xWs&v=3&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnrcKHtDPGwXx8N4N9Oz2ciCUCxVP1xWs&libraries=geometry&v=3&callback=initMap"
+        onerror="googleError()">
     </script>
     <!-- knockout framework -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
